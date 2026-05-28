@@ -1,48 +1,53 @@
+
+
 # Reviewing-Unallocated-Space-Extracting-Data-with-Tools-Digital-Investigation-Processes
 ## AIM:
 To review unallocated space in a disk image, extract data using forensic tools, and understand the digital investigation process.
-## REQUIREMENTS
-- Autopsy or FTK Imager
-- Sleuth Kit (TSK)
-- Hex Editor (e.g., HxD)
-- Operating System: Windows 10/11 or Linux (Kali preferred)
-## ARCHITECTURE DIAGRAM
-```mermaid
-flowchart TD
-    A[Disk Image / Physical Drive] --> B[Load into Autopsy or Sleuth Kit]
-    B --> C[Identify Unallocated Space]
-    C --> D[Scan for Data Signatures]
-    D --> E[Carve and Recover Files]
-    E --> F[Analyze Recovered Data]
-    F --> G[Document Findings in Report]
-```
+
 ## DESIGN STEPS:
-### Step 1 (Acquire Evidence Image):
-- Obtain the disk image in ```.dd``` or ```.E01``` format from a trusted forensic acquisition process.
-- Verify hash values (MD5/SHA256) to maintain integrity.
+### Step 1:
+Use tools like Autopsy or Sleuth Kit (blkls, icat) to identify and analyze unallocated space.
 
-### Step 2(Load Image into Forensic Tool):
-- Open Autopsy or FTK Imager.
-- Create a new case and add the evidence image.
+### Step 2:
+Extract data from unallocated space and examine for hidden or deleted content.
 
-### Step 3(Locate Unallocated Space):
-- Navigate to the partition structure view.
-- Identify sectors not assigned to any partition (unallocated).
-### Step 4(Analyze & Carve Data):
-- Use built-in data carving tools to search for file signatures (JPEG, DOCX, PDF, etc.).
-- Preview carved files for relevance.
-  
+### Step 3:
+Document and interpret findings as part of the digital investigation process.
+
 ## PROGRAM:
-| Step | Action                     | Tool Used                   | Output                       |
-| ---- | -------------------------- | --------------------------- | ---------------------------- |
-| 1    | Load disk image            | Autopsy / FTK Imager        | Partition & unallocated view |
-| 2    | Identify unallocated space | Autopsy File System View    | Sector ranges                |
-| 3    | Data carving               | Autopsy Data Carving Module | Recovered files              |
-| 4    | Export evidence            | Autopsy Export Option       | File copies for analysis     |
+Data Extraction and Investigation Tool Usage
+```
+lsblk
+```
 
+```
+sudo dd if=/dev/sda of=/home/kali/disk.img bs=512
+```
 
+```
+mmls ~/disk.img
+```
+```
+sudo ls -lh disk.img
+```
+```
+strings disk.img | less
+```
 ## OUTPUT:
 Unallocated Space Analysis and Extracted Data Report
+![image](https://github.com/user-attachments/assets/754dee37-bef7-4cbf-b6c1-6bf8983befda)
+
+![image](https://github.com/user-attachments/assets/a8b59831-7bd7-4699-8f56-ca192d17d70e)
+
+
+![image](https://github.com/user-attachments/assets/3a0d7674-9182-4b14-aa62-1e76725d975a)
+
+
+![image](https://github.com/user-attachments/assets/f759788f-0b11-4287-8db9-d0ab5a349d73)
+
+
+![image](https://github.com/user-attachments/assets/6566bb2d-f19e-42d6-ac88-d6562f34117d)
+
 
 ## RESULT:
 The unallocated space was successfully analyzed, data was extracted, and the digital investigation process was followed effectively.
